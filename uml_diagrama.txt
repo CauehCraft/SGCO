@@ -1,0 +1,88 @@
+@startuml
+!define primary_key(x) <u>x</u>
+
+class Produto {
+  -primary_key(id: int)
+  -nome: String
+  -descricao: String
+  -preco: double
+  -quantidadeEmEstoque: int
+  +criarProduto(): void
+  +buscarProduto(): Produto
+  +listarProdutos(): Produto[]
+  +atualizarProduto(): void
+  +deletarProduto(): void
+}
+
+class Cliente {
+  -primary_key(id: int)
+  -nome: String
+  -email: String
+  -senha: String
+  -endereco: String
+  +criarCliente(): void
+  +lerCliente(id: int): Cliente
+  +atualizarCliente(id: int): void
+  +deletarCliente(id: int): void
+  +autenticarCliente(): boolean
+}
+
+class Compra {
+  -primary_key(id: int)
+  -data: Date
+  -status: String // Realizada/Concluida
+  -itens: ItemPedido[]
+  -pagamento: Pagamento
+  -entrega: Entrega
+  +calcularTotalVendido(data: Date): double  
+  +atualizarStatus(status: String): void
+  +calcularTotal(): double
+  +adicionarAoCarrinho(itemPedido: ItemPedido): void
+  +removerDoCarrinho(itemPedido: ItemPedido): void
+  +realizarCompra(): Compra
+  +buscarCompra(): Compra
+  +atualizarCompra(): void
+  +deletarCompra(): void
+  
+}
+
+class ItemPedido {
+  -primary_key(id: int)
+  -produto: Produto
+  -quantidade: int
+  -precoTotal: double
+  +calcularSubtotal(): double
+  +criarItemPedido(): void
+  +buscarItemPedido(): ItemPedido
+  +atualizarItemPedido(): void
+  +deletarItemPedido(): void
+}
+
+class Pagamento {
+  -primary_key(id: int)
+  -tipo: String // Cartão de crédito, Boleto, etc.
+  -status: String // Pago, Pendente, etc.
+  +realizarPagamento(): boolean
+  +criarPagamento(): void
+  +buscarPagamento(): Pagamento
+  +atualizarPagamento(): void
+  +deletarPagamento(): void
+}
+
+class Entrega {
+  -primary_key(id: int)
+  -endereco: String
+  -status: String // Em trânsito, Entregue, etc.
+  +atualizarStatus(status: String): void
+  +criarEntrega(): void
+  +visualizarEntrega(): Entrega
+  +atualizarEntrega(): void
+  +cancelarEntrega(): void
+}
+
+Produto "1" -- "(0, N)" ItemPedido : contém
+Cliente "1" -- "(0, N)" Compra : faz
+Compra "1" -- "(0, N)" ItemPedido : contém
+Compra "1" -- "1" Pagamento : possui
+Compra "1" -- "1" Entrega : possui
+@enduml

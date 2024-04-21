@@ -24,3 +24,7 @@ hs_err_pid*
 replay_pid*
 /SGCO/nbproject/private/
 /SGCO/build/
+
+# include all lib files
+!/SGCO/lib/*
+!/SGCO/lib/CopyLibs/*

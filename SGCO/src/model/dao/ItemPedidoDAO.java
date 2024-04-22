@@ -11,7 +11,7 @@ import model.bean.Compra;
 public class ItemPedidoDAO {
     
     
-    /**
+     /**
      * Este método é usado para criar um novo item de pedido no banco de dados.
      * Ele aceita um objeto ItemPedido como parâmetro, que contém as informações do item do pedido.
      * As informações do item do pedido são extraídas e usadas para preencher uma instrução SQL.
@@ -22,7 +22,7 @@ public class ItemPedidoDAO {
 
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement statement = null;
-
+        
         try {
             statement = connection.prepareStatement(sql);
             statement.setInt(1, itemPedido.getQuantidade());
@@ -42,7 +42,7 @@ public class ItemPedidoDAO {
         }
     }
 
-    /**
+     /**
      * Este método é usado para buscar um item de pedido existente no banco de dados.
      * Ele aceita um ID de item de pedido como parâmetro e usa esse ID para preencher uma instrução SQL.
      * A instrução SQL é então executada para recuperar o item do pedido do banco de dados.
@@ -83,7 +83,7 @@ public class ItemPedidoDAO {
         return itemPedido;
     }
 
-
+    
     public static void atualizarItemPedido(ItemPedido itemPedido) throws SQLException {
         String sql = "UPDATE ItemPedido SET quantidade = ?, precoTotal = ?, produto_id = ? WHERE id = ?";
 
@@ -131,7 +131,7 @@ public class ItemPedidoDAO {
         }
     }
     
-    /**
+     /**
      * Este método é usado para listar todos os itens de pedido associados a uma compra específica.
      * Ele aceita um ID de compra como parâmetro e usa esse ID para preencher uma instrução SQL.
      * A instrução SQL é então executada para recuperar todos os itens de pedido associados à compra do banco de dados.
@@ -164,7 +164,7 @@ public class ItemPedidoDAO {
 
        return itens;
    }
-    
+
     // recupera o ID do último item de pedido cadastrado no Banco de Dados
     public static int getIdUltimoItemPedido() throws SQLException {
         String sql = "SELECT MAX(id) AS max_id FROM ItemPedido";

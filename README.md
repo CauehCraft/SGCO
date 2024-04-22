@@ -1,2 +1,2 @@
-# SGCO_PRIVATE_DEV
-SGCO DE FORMA PRIVADA F***-S*
+# SGCO
+Sistema de gerencimento de compras online.

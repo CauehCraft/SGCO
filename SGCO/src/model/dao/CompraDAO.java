@@ -159,7 +159,7 @@ public class CompraDAO {
     public static List<Compra> listarComprasPorUsuario(int idUsuario) throws SQLException {
         List<Compra> compras = new ArrayList<>();
 
-        String sql = "SELECT * FROM Compra WHERE idUsuario = ?";
+        String sql = "SELECT * FROM Compra WHERE usuario_id = ?";
 
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement statement = null;
@@ -174,8 +174,8 @@ public class CompraDAO {
                 int id = resultSet.getInt("id");
                 Date data = resultSet.getDate("data");
                 String status = resultSet.getString("status");
-                int idEntrega = resultSet.getInt("idEntrega");
-                int idPagamento = resultSet.getInt("idPagamento");
+                int idEntrega = resultSet.getInt("entrega_id");
+                int idPagamento = resultSet.getInt("pagamento_id");
 
                 Entrega entrega = EntregaDAO.buscarEntrega(idEntrega);
                 Pagamento pagamento = PagamentoDAO.buscarPagamento(idPagamento);

@@ -28,3 +28,4 @@ replay_pid*
 # include all lib files
 !/SGCO/lib/*
 !/SGCO/lib/CopyLibs/*
+/SGCO/dist/
